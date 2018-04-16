@@ -1,4 +1,4 @@
-all: clean
+all: clean compile run
 
 clean: 
 	find . -name "*.class" -exec rm -rf {} \;

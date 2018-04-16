@@ -1,33 +1,21 @@
 
-public class GumballMachine
+public abstract class GumballMachine
 {
 
-    private int num_gumballs;
-    private boolean has_quarter;
+    protected int num_gumballs;
 
-    public GumballMachine( int size )
-    {
-        // initialise instance variables
-        this.num_gumballs = size;
-        this.has_quarter = false;
-    }
-
-    public void insertQuarter(int coin)
-    {
-        if ( coin == 25 )
-            this.has_quarter = true ;
-        else 
-            this.has_quarter = false ;
-    }
+    abstract void insertCoin(int coin);
+    abstract boolean hasSufficientCredit();
+    abstract void resetCredit();
     
     public void turnCrank()
     {
-    	if ( this.has_quarter )
+    	if ( this.hasSufficientCredit())
     	{
     		if ( this.num_gumballs > 0 )
     		{
     			this.num_gumballs-- ;
-    			this.has_quarter = false ;
+    			this.resetCredit();
     			System.out.println( "Thanks for your quarter.  Gumball Ejected!" ) ;
     		}
     		else
@@ -37,7 +25,7 @@ public class GumballMachine
     	}
     	else 
     	{
-    		System.out.println( "Please insert a quarter" ) ;
+    		System.out.println( "No sufficient funds" ) ;
     	}        
     }
 }
